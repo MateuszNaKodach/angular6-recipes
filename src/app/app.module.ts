@@ -13,7 +13,7 @@ import {FormsModule} from '@angular/forms';
 import { DropdownDirective } from './shared/dropdown.directive';
 import {Route} from '@angular/router';
 import {AppRoutingModule} from './app-routing.module';
-import { RecipeStartComponent } from './recipres/recipe-start/recipe-start.component';
+import { RecipeStartComponent } from './recipes/recipe-start/recipe-start.component';
 
 
 @NgModule({
