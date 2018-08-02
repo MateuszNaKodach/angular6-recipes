@@ -39,9 +39,7 @@ export class RecipeService {
       []
     )
   ];
-
-  recipeSelected = new EventEmitter<Recipe>();
-
+  
 
   constructor(private slService: ShoppingListService) {
   }
