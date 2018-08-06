@@ -16,15 +16,13 @@ export class DataStorageService {
   }
 
   storeRecipes() {
-    const token = this.authService.getToken();
-
     /* return this.httpClient.put(
        this.baseUrl,
        this.recipeService.getRecipes(),
        {params: new HttpParams().set('auth', token)}
      );*/
 
-    const putRecipesRequest = new HttpRequest(
+    /*const putRecipesRequest = new HttpRequest(
       'PUT',
       this.baseUrl,
       this.recipeService.getRecipes(),
@@ -32,9 +30,18 @@ export class DataStorageService {
         reportProgress: true,
         params: new HttpParams().set('auth', token)
       }
+    );*/
+
+    const putRecipesRequest = new HttpRequest(
+      'PUT',
+      this.baseUrl,
+      this.recipeService.getRecipes(),
+      {
+        reportProgress: true
+      }
     );
 
-    return this.httpClient.request(putRecipesRequest);
+    return this.httpClient.request(putRecipesRequest); // Here token is passed by interceptor.
   }
 
   fetchRecipes() {
