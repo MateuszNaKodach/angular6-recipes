@@ -13,7 +13,21 @@ export class AuthService {
   singupUser(email: string, password: string) {
     firebase.auth().createUserWithEmailAndPassword(email, password)
       .then(
-        user => this.store.dispatch(new AuthActions.Signup())
+        user => {
+          this.store.dispatch(new AuthActions.Signup());
+          firebase.auth().signInWithEmailAndPassword(email, password)
+            .then(
+              response => {
+                this.store.dispatch(new AuthActions.Signin());
+                this.router.navigate(['/']);
+                firebase.auth().currentUser.getIdToken()
+                  .then((token: string) => this.store.dispatch(new AuthActions.SetToken(token)));
+              }
+            )
+            .catch(
+              error => console.log(error)
+            );
+        }
       )
       .catch(
         error => console.log(error)

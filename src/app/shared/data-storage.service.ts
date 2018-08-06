@@ -45,9 +45,7 @@ export class DataStorageService {
   }
 
   fetchRecipes() {
-    const token = this.authService.getToken();
-
-    return this.httpClient.get<Recipe[]>(this.baseUrl + '?auth=' + token)
+    return this.httpClient.get<Recipe[]>(this.baseUrl)
       .subscribe(
         (recipes: Recipe[]) => this.recipeService.setRecipes(recipes)
       );
