@@ -3,7 +3,7 @@ import {Ingredient} from '../../shared/ingredient.model';
 import {NgForm} from '@angular/forms';
 import {Subscription} from 'rxjs';
 import {Store} from '@ngrx/store';
-import {AppState} from '../store/shopping-list.reducers';
+import {AppState} from '../../store/app.reducers';
 import * as ShoppingListActions from '../store/shopping-list.actions';
 
 @Component({
@@ -32,7 +32,7 @@ export class ShoppingEditComponent implements OnInit, OnDestroy {
               name: this.editedItem.name,
               amount: this.editedItem.amount
             });
-          }else{
+          } else {
             this.editMode = false;
           }
         }
@@ -62,6 +62,7 @@ export class ShoppingEditComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
+    this.store.dispatch(new ShoppingListActions.StopEdit());
     this.subscription.unsubscribe();
   }
 }
